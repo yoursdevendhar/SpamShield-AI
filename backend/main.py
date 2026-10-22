@@ -9,7 +9,7 @@ app = FastAPI(title = "SpamShield AI")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://spam-shield-4ybo0396j-yoursdev.vercel.app/"
+        "https://spam-shield-ai-pink.vercel.app"
     ],
     allow_credentials=False,
     allow_methods=["GET", "POST"],
