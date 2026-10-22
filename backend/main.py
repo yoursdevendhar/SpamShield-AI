@@ -9,11 +9,12 @@ app = FastAPI(title = "SpamShield AI")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://spam-shield-ai-pink.vercel.app"
+        "https://spam-shield-ai-pink.vercel.app",
+        "http://localhost:5173",
     ],
     allow_credentials=False,
-    allow_methods=["GET", "POST"],
-    allow_headers=["Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 BASE_DIR = Path(__file__).resolve().parent
