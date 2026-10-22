@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-const API_URL = https://spamshield-ai-9439.onrender.com;
+const API_URL = "https://spamshield-ai-9439.onrender.com";
 
 function App(){
   const [message, setMessage] = useState("");
@@ -19,7 +19,7 @@ function App(){
     setResult(null);
     try{
       const response = await fetch(
-        "`${API_URL}/api/predict",
+        `${API_URL}/api/predict`,
         {
           method:"POST",
           headers:{
