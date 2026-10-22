@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function App(){
   const [message, setMessage] = useState("");
@@ -18,7 +19,7 @@ function App(){
     setResult(null);
     try{
       const response = await fetch(
-        "http://127.0.0.1:8000/api/predict",
+        "`${API_URL}/api/predict",
         {
           method:"POST",
           headers:{
