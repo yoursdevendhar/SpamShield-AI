@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap");
+
+:root {
+  --page: #dde3e6;
+  --paper: #f7f8f6;
+  --ink: #1b2a35;
+  --ink-soft: #55656f;
+  --line: #b9c4ca;
+  --blue: #27527f;
+  --spam: #a82a22;
+  --spam-bg: #f6e4e1;
+  --safe: #2b6a4b;
+  --safe-bg: #e0eee6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  /* overrides the default Vite index.css centering */
+  display: block;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.App {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 20px 40px;
+  text-align: left;
+}
+
+/* ---------- header ---------- */
+
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 14px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.logo {
+  grid-row: span 2;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 1.5rem;
+  font-weight: 800;
+  border-radius: 6px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.header p {
+  margin: 2px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* ---------- form ---------- */
+
+.detector {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 32px 32px 28px;
+}
+
+.detector h2 {
+  margin: 0 0 6px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  margin: 0 0 24px;
+  color: var(--ink-soft);
+}
+
+.detector label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 140px;
+}
+
+textarea::placeholder {
+  color: #8c9aa3;
+}
+
+textarea:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+  border-color: var(--blue);
+}
+
+.character-count {
+  margin-top: 6px;
+  text-align: right;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+button {
+  margin-top: 18px;
+  padding: 11px 22px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--paper);
+  background: var(--ink);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--blue);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ---------- error ---------- */
+
+.error {
+  margin-top: 20px;
+  padding: 12px 14px;
+  background: var(--spam-bg);
+  border-left: 4px solid var(--spam);
+  color: #6f1a15;
+  font-size: 0.95rem;
+}
+
+/* ---------- result ---------- */
+
+.result {
+  margin-top: 28px;
+  padding: 22px 24px;
+  border-left: 5px solid;
+  border-radius: 0 4px 4px 0;
+  animation: settle 0.25s ease-out;
+}
+
+.result.spam {
+  background: var(--spam-bg);
+  border-color: var(--spam);
+  color: #4d1511;
+}
+
+.result.safe {
+  background: var(--safe-bg);
+  border-color: var(--safe);
+  color: #17402c;
+}
+
+/* the one memorable thing: the verdict is stamped on */
+.result h3 {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 4px 14px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  border: 3px double currentColor;
+  border-radius: 4px;
+  transform: rotate(-2deg);
+}
+
+.result.spam h3 {
+  color: var(--spam);
+}
+
+.result.safe h3 {
+  color: var(--safe);
+}
+
+.result p {
+  margin: 0 0 8px;
+}
+
+.result .warning {
+  font-weight: 500;
+}
+
+.result-message {
+  margin-top: 14px !important;
+  padding-top: 14px;
+  border-top: 1px solid rgba(27, 42, 53, 0.2);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 520px) {
+  body {
+    font-size: 16px;
+  }
+
+  .App {
+    padding: 32px 14px 28px;
+  }
+
+  .detector {
+    padding: 22px 18px 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result {
+    animation: none;
+  }
+}
